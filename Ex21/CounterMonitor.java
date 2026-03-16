@@ -1,10 +1,9 @@
-package counters.Examples;
+package counters.Ex21;
 
-public class Counter {
+public class CounterMonitor {
 
-	static volatile long counter;
-	// race condition with shared mutable state
-
+	static long counter;
+	static Object lock = new Object();
 
 	static class CounterThread implements Runnable {
 		int id;
@@ -16,24 +15,20 @@ public class Counter {
 		}
 
 		@Override
-		public  void run() {
-
+		public void run() {
 			if (id % 2 == 0) {
-
-					for (long l = 0; l < n; l++) {
-						synchronized (Counter.class) {
-						counter++; // this code must be atomic.
+				for (long l = 0; l < n; l++) {
+					synchronized(lock) {
+						counter++;
 					}
 				}
 			} else {
-
-					for (long l = 0; l < n; l++) {
-						synchronized (Counter.class) {
-						counter--; //this code must be atomic
+				for (long l = 0; l < n; l++) {
+					synchronized(lock) {
+						counter--;
 					}
 				}
 			}
-
 		}
 	}
 
@@ -42,7 +37,6 @@ public class Counter {
 		long n = (args.length >= 2 ? Long.parseLong(args[1]) : 10000000);
 
 		System.out.println("Start with " + t + " threads");
-
 		// Create threads
 		Thread[] threads = new Thread[t];
 		for (int i = 0; i < t; i++) {
@@ -50,10 +44,8 @@ public class Counter {
 		}
 		long time = System.currentTimeMillis();
 		// Start threads
-
 		for (int i = 0; i < t; i++) {
 			threads[i].start();
-			System.out.println("Thread id: " + threads[i].getId());
 		}
 		// Wait for threads completion
 		for (int i = 0; i < t; i++) {

@@ -1,9 +1,11 @@
-package counters.Examples;
+package counters.Ex21;
 
-public class CounterMonitor {
+import java.util.concurrent.locks.ReentrantLock;
+
+public class CounterLock {
 
 	static long counter;
-	static Object lock = new Object();
+	static ReentrantLock lock = new ReentrantLock();
 
 	static class CounterThread implements Runnable {
 		int id;
@@ -18,15 +20,15 @@ public class CounterMonitor {
 		public void run() {
 			if (id % 2 == 0) {
 				for (long l = 0; l < n; l++) {
-					synchronized(lock) {
-						counter++;
-					}
+					lock.lock();
+					counter++;
+					lock.unlock();
 				}
 			} else {
 				for (long l = 0; l < n; l++) {
-					synchronized(lock) {
-						counter--;
-					}
+					lock.lock();
+					counter--;
+					lock.unlock();
 				}
 			}
 		}

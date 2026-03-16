@@ -1,11 +1,10 @@
-package counters.Examples;
+package counters.Ex21;
 
-import java.util.concurrent.locks.ReentrantLock;
+import java.util.concurrent.atomic.AtomicLong;
 
-public class CounterLock {
+public class CounterAtomic {
 
-	static long counter;
-	static ReentrantLock lock = new ReentrantLock();
+	static AtomicLong counter = new AtomicLong();
 
 	static class CounterThread implements Runnable {
 		int id;
@@ -20,15 +19,11 @@ public class CounterLock {
 		public void run() {
 			if (id % 2 == 0) {
 				for (long l = 0; l < n; l++) {
-					lock.lock();
-					counter++;
-					lock.unlock();
+					counter.getAndIncrement();
 				}
 			} else {
 				for (long l = 0; l < n; l++) {
-					lock.lock();
-					counter--;
-					lock.unlock();
+					counter.getAndDecrement();
 				}
 			}
 		}

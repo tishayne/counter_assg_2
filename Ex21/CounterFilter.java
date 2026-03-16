@@ -1,4 +1,4 @@
-package counters.Examples;
+package counters.Ex21;
 
 import java.util.concurrent.atomic.AtomicIntegerArray;
 
