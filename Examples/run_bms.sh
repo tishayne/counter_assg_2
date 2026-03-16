@@ -8,7 +8,7 @@ SRC_DIR="."
 BIN_DIR="./bin"
 N=10000000
 THREAD_COUNTS=(2 4 8 16)
-CLASSES=("Counter" "CounterAtomic" "CounterBakery" "CounterFilter" "CounterLock" "CounterMonitor")
+CLASSES=("Counter" "CounterAtomic" "CounterLock" "CounterMonitor" "CounterBakery" "CounterFilter")
 
 # ---- Setup ------------------------------------------------------------------
 mkdir -p "$BIN_DIR"

@@ -14,6 +14,26 @@ CounterAtomic             4            0          780
 CounterAtomic             8            0         1665
 CounterAtomic            16            0         3898
 
+CounterLock               2            0          943
+CounterLock               4            0         1135
+CounterLock               8            0         2225
+CounterLock              16            0         4486
+
+CounterMonitor            2            0          398
+CounterMonitor            4            0         1744
+CounterMonitor            8            0         3426
+CounterMonitor           16            0         5115
+
+
+From here on I removed the 16 Thread config because it was taking too long and
+overheating my PC. The more threads, the longer the execution time. The exec time
+rises exponentially from here on:
 CounterBakery             2            0         1960
 CounterBakery             4            0         6958
 CounterBakery             8            0        36123
+
+CounterFilter             2            0         1491
+CounterFilter             4            0         8432
+CounterFilter             8            0        40908
+
+
