@@ -1,4 +1,4 @@
-package counters.Ex2_2;
+package counters.Ex22;
 
 public class RwLock {
     private int nbOfActiveReaders = 0;
@@ -7,8 +7,8 @@ public class RwLock {
 
     //acwuire lock for reading
     public synchronized void lockRead() throws InterruptedException{
-        // give writers priority when waiting
-        while (nbOfActiveWriters > 0 || nbOfWaitingWriters > 0){
+        // if any writer is active, wait.
+        while (nbOfActiveWriters > 0){
             wait();
         }
         nbOfActiveReaders++;
