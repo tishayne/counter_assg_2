@@ -1,0 +1,19 @@
+Counter Synchronization Benchmark
+N = 10000000,  T in {2 4 8 16}
+Run on: Sun Mar 15 14:17:21 WEST 2026
+
+Implementation            T       Result    Time (ms)
+-------------------- ------ ------------   ----------
+Counter                   2            0          685
+Counter                   4            0         1887
+Counter                   8            0         3013
+Counter                  16            0         7842
+
+CounterAtomic             2            0          247
+CounterAtomic             4            0          780
+CounterAtomic             8            0         1665
+CounterAtomic            16            0         3898
+
+CounterBakery             2            0         1960
+CounterBakery             4            0         6958
+CounterBakery             8            0        36123
